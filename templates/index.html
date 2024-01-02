@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD App</title>
+</head>
+
+<body>
+  <h1>CRUD App</h1>
+  <form action="/add" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+    {% for item in items %}
+    <li>
+      {{ item.name }}
+      <form action="{{ url_for('update', item_id=item.id) }}" method="post" style="display: inline;">
+        <label for="name">Update:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Update</button>
+      </form>
+      <a href="{{ url_for('delete', item_id=item.id) }}" style="color: red;">Delete</a>
+    </li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>

@@ -14,6 +14,7 @@ class Item(db.Model):
 @app.route('/')
 def index():
     items = Item.query.all()
+    items = list(filter(lambda item: "Test" not in item.name, items))
     return render_template('index.html', items=items)
 
 

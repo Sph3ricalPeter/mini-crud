@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">mini-crud</a>
@@ -30,32 +29,26 @@
   </nav>
 
   <div class="p-3">
-    <h1>Items list</h1>
+    <h1>Update item {{ item.id }}</h1>
 
-    <!-- display items in table -->
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in items %}
-        <tr>
-          <th scope="row">{{ item.id }}</th>
-          <td>{{ item.name }}</td>
-          <td><a href="/detail/{{ item.id }}">Show detail</a></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-
-    {% if items|length == 0 %}
-    <p>There are no items to display</p>
-    {% endif %}
+    <form action="/update/{{ item.id }}" method="post" class="w-50">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="name" class="form-control" id="name" name="name" value="{{ item.name }}">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" value="{{ item.email }}">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" value="{{ item.password }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
-  
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 

@@ -40,6 +40,9 @@ def update_item_page(item_id):
 def add():
     name = request.form.get('name')
     email = request.form.get('email')
+    if Item.query.filter_by(email=email).first():
+      # redirect to /add with error message
+      return render_template('new_item.html', error='Email already exists')
     password = request.form.get('password')
     new_item = Item(name=name, email=email, password=password)
     db.session.add(new_item)
